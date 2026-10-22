@@ -1,0 +1,141 @@
+
+{% extends 'inventory/base.html' %}
+
+{% block title %}
+    {% if purchase %}Edit Purchase{% else %}Add Purchase{% endif %}
+{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid py-4">
+
+    <!-- Page Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div>
+            <h2 class="fw-bold">
+                {% if purchase %}
+                    Edit Purchase
+                {% else %}
+                    Add Purchase
+                {% endif %}
+            </h2>
+
+            <p class="text-muted mb-0">
+                {% if purchase %}
+                    Update the purchase details below.
+                {% else %}
+                    Record a new inventory purchase.
+                {% endif %}
+            </p>
+        </div>
+
+        <a href="{% url 'purchase' %}" class="btn btn-outline-secondary">
+            <i class="bi bi-arrow-left"></i> Back to Purchases
+        </a>
+    </div>
+
+    <!-- Purchase Form -->
+    <div class="card shadow-sm border-0">
+        <div class="card-header bg-white py-3">
+            <h5 class="mb-0">Purchase Details</h5>
+        </div>
+
+        <div class="card-body p-4">
+
+            <form method="POST">
+                {% csrf_token %}
+
+                {% if form.non_field_errors %}
+                    <div class="alert alert-danger">
+                        {{ form.non_field_errors }}
+                    </div>
+                {% endif %}
+
+                <div class="row g-3">
+
+                    <!-- Product -->
+                    <div class="col-md-6">
+                        <label for="{{ form.product.id_for_label }}"
+                               class="form-label">
+                            Product
+                        </label>
+
+                        {{ form.product }}
+
+                        {% for error in form.product.errors %}
+                            <div class="text-danger small">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Supplier -->
+                    <div class="col-md-6">
+                        <label for="{{ form.supplier.id_for_label }}"
+                               class="form-label">
+                            Supplier
+                        </label>
+
+                        {{ form.supplier }}
+
+                        {% for error in form.supplier.errors %}
+                            <div class="text-danger small">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Quantity -->
+                    <div class="col-md-6">
+                        <label for="{{ form.quantity.id_for_label }}"
+                               class="form-label">
+                            Quantity Purchased
+                        </label>
+
+                        {{ form.quantity }}
+
+                        {% for error in form.quantity.errors %}
+                            <div class="text-danger small">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                    <!-- Unit Cost -->
+                    <div class="col-md-6">
+                        <label for="{{ form.unit_cost.id_for_label }}"
+                               class="form-label">
+                            Unit Cost (KSh)
+                        </label>
+
+                        {{ form.unit_cost }}
+
+                        {% for error in form.unit_cost.errors %}
+                            <div class="text-danger small">{{ error }}</div>
+                        {% endfor %}
+                    </div>
+
+                </div>
+
+                <!-- Buttons -->
+                <div class="d-flex justify-content-end gap-2 mt-4">
+
+                    <a href="{% url 'purchase' %}"
+                       class="btn btn-light border">
+                        Cancel
+                    </a>
+
+                    <button type="submit" class="btn btn-primary">
+                        <i class="bi bi-check-circle"></i>
+
+                        {% if purchase %}
+                            Update Purchase
+                        {% else %}
+                            Save Purchase
+                        {% endif %}
+                    </button>
+
+                </div>
+
+            </form>
+
+        </div>
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,375 @@
+{% extends 'inventory/base.html' %}
+
+
+{% block title %}
+
+Dashboard
+
+{% endblock %}
+
+
+
+{% block content %}
+
+<!-- PAGE HEADING -->
+
+<div class="mb-4">
+
+    <h2 class="fw-bold">
+        Dashboard
+    </h2>
+
+    <p class="text-muted">
+        Welcome back, {{ request.user.username }}!
+    </p>
+
+</div>
+
+
+
+<!-- ========================= -->
+<!-- DASHBOARD CARDS -->
+<!-- ========================= -->
+
+<div class="row g-4">
+
+
+    <!-- TOTAL PRODUCTS -->
+
+    <div class="col-md-6 col-lg-3">
+
+        <div class="card dashboard-card p-3">
+
+            <div class="d-flex align-items-center">
+
+                <div class="card-icon bg-primary text-white me-3">
+
+                    <i class="bi bi-box-seam"></i>
+
+                </div>
+
+                <div>
+
+                    <p class="text-muted mb-1">
+                        Total Products
+                    </p>
+
+                    <h3 class="mb-0">
+                        {{total_products}}
+                    </h3>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- CATEGORIES -->
+
+    <div class="col-md-6 col-lg-3">
+
+        <div class="card dashboard-card p-3">
+
+            <div class="d-flex align-items-center">
+
+                <div class="card-icon bg-success text-white me-3">
+
+                    <i class="bi bi-tags"></i>
+
+                </div>
+
+                <div>
+
+                    <p class="text-muted mb-1">
+                        Categories
+                    </p>
+
+                    <h3 class="mb-0">
+                        15
+                    </h3>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- LOW STOCK -->
+
+    <div class="col-md-6 col-lg-3">
+
+        <div class="card dashboard-card p-3">
+
+            <div class="d-flex align-items-center">
+
+                <div class="card-icon bg-danger text-white me-3">
+
+                    <i class="bi bi-exclamation-triangle"></i>
+
+                </div>
+
+                <div>
+
+                    <p class="text-muted mb-1">
+                        Low Stock
+                    </p>
+
+                    <h3 class="mb-0">
+                        8
+                    </h3>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+
+    <!-- STOCK VALUE -->
+
+    <div class="col-md-6 col-lg-3">
+
+        <div class="card dashboard-card p-3">
+
+            <div class="d-flex align-items-center">
+
+                <div class="card-icon bg-warning text-dark me-3">
+
+                    <i class="bi bi-cash-stack"></i>
+
+                </div>
+
+                <div>
+
+                    <p class="text-muted mb-1">
+                        Stock Value
+                    </p>
+
+                    <h3 class="mb-0">
+                        KSh 850,000
+                    </h3>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+
+<!-- ========================= -->
+<!-- RECENT SALES -->
+<!-- ========================= -->
+
+<div class="content-card mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+
+        <h4 class="mb-0">
+            Recent Sales
+        </h4>
+
+        <a href="#" class="text-primary">
+            View All
+        </a>
+
+    </div>
+
+
+    <div class="table-responsive">
+
+        <table class="table table-hover">
+
+            <thead>
+
+                <tr>
+
+                    <th>#</th>
+
+                    <th>Product</th>
+
+                    <th>Customer</th>
+
+                    <th>Quantity</th>
+
+                    <th>Amount</th>
+
+                    <th>Date</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                <tr>
+
+                    <td>1</td>
+                    <td>HP Laptop</td>
+                    <td>John Odhiambo</td>
+                    <td>2</td>
+                    <td>KSh 130,000</td>
+                    <td>13 Aug 2026</td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>2</td>
+                    <td>Mouse</td>
+                    <td>Mary muya</td>
+                    <td>3</td>
+                    <td>KSh 6,000</td>
+                    <td>13 Aug 2026</td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>3</td>
+                    <td>Keyboard</td>
+                    <td>David Otieno</td>
+                    <td>1</td>
+                    <td>KSh 2,500</td>
+                    <td>12 Aug 2026</td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+
+<!-- ========================= -->
+<!-- LOW STOCK PRODUCTS -->
+<!-- ========================= -->
+
+<div class="content-card mt-4">
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+
+        <h4 class="mb-0">
+            Low Stock Products
+        </h4>
+
+        <a href="#" class="text-primary">
+            View All
+        </a>
+
+    </div>
+
+
+    <div class="table-responsive">
+
+        <table class="table table-hover">
+
+            <thead>
+
+                <tr>
+
+                    <th>#</th>
+
+                    <th>Product</th>
+
+                    <th>Current Stock</th>
+
+                    <th>Minimum Stock</th>
+
+                    <th>Status</th>
+
+                </tr>
+
+            </thead>
+
+
+            <tbody>
+
+                <tr>
+
+                    <td>1</td>
+
+                    <td>HP Laptop</td>
+
+                    <td>3</td>
+
+                    <td>5</td>
+
+                    <td>
+                        <span class="badge bg-warning text-dark">
+                            Low Stock
+                        </span>
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>2</td>
+
+                    <td>Mouse</td>
+
+                    <td>2</td>
+
+                    <td>10</td>
+
+                    <td>
+                        <span class="badge bg-warning text-dark">
+                            Low Stock
+                        </span>
+                    </td>
+
+                </tr>
+
+
+                <tr>
+
+                    <td>3</td>
+
+                    <td>Monitor</td>
+
+                    <td>0</td>
+
+                    <td>5</td>
+
+                    <td>
+                        <span class="badge bg-danger">
+                            Out of Stock
+                        </span>
+                    </td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+
+{% endblock %}

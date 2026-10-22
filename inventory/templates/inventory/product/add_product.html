@@ -1,0 +1,212 @@
+{% extends 'inventory/base.html' %}
+
+{% block title %}
+Add Product
+{% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between align-items-center mb-4">
+
+    <div>
+        <h2 class="fw-bold">Add Product</h2>
+
+        <p class="text-muted mb-0">
+            Add a new product to your inventory
+        </p>
+    </div>
+
+    <a href="{% url 'products' %}" class="btn btn-secondary">
+        <i class="bi bi-arrow-left"></i>
+        Back to Products
+    </a>
+
+</div>
+
+
+<div class="content-card">
+
+    <div class="card-body">
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            <!-- Product Name -->
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Product Name
+                </label>
+
+                {{ form.name }}
+
+                {% if form.name.errors %}
+
+                    <div class="text-danger">
+                        {{ form.name.errors }}
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- SKU -->
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    SKU
+                </label>
+
+                {{ form.sku }}
+
+                {% if form.sku.errors %}
+
+                    <div class="text-danger">
+                        {{ form.sku.errors }}
+                    </div>
+
+                {% endif %}
+
+                <small class="text-muted">
+                    Stock Keeping Unit - a unique code for this product.
+                </small>
+
+            </div>
+
+
+            <!-- Category -->
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Category
+                </label>
+
+                {{ form.category }}
+
+                {% if form.category.errors %}
+
+                    <div class="text-danger">
+                        {{ form.category.errors }}
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- Description -->
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Description
+                </label>
+
+                {{ form.description }}
+
+                {% if form.description.errors %}
+
+                    <div class="text-danger">
+                        {{ form.description.errors }}
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- Price -->
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Price
+                </label>
+
+                {{ form.price }}
+
+                {% if form.price.errors %}
+
+                    <div class="text-danger">
+                        {{ form.price.errors }}
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- Quantity -->
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Quantity
+                </label>
+
+                {{ form.quantity }}
+
+                {% if form.quantity.errors %}
+
+                    <div class="text-danger">
+                        {{ form.quantity.errors }}
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- Minimum Stock -->
+
+            <div class="mb-3">
+
+                <label class="form-label">
+                    Minimum Stock Level
+                </label>
+
+                {{ form.minimum_stock }}
+
+                {% if form.minimum_stock.errors %}
+
+                    <div class="text-danger">
+                        {{ form.minimum_stock.errors }}
+                    </div>
+
+                {% endif %}
+
+            </div>
+
+
+            <!-- Buttons -->
+
+            <div class="mt-4">
+
+                <button type="submit" class="btn btn-primary">
+
+                    <i class="bi bi-plus-lg"></i>
+                    Save Product
+
+                </button>
+
+                <a href="{% url 'products' %}"
+                   class="btn btn-secondary">
+
+                    Cancel
+
+                </a>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}
