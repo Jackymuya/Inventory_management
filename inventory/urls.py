@@ -5,6 +5,9 @@ from django.shortcuts import redirect
 from . import views
 
 urlpatterns = [
+
+    path('register/', views.register, name='register'),
+    
     # Homepage: redirect visitors to login
     path('', lambda request: redirect('login'), name='home'),
 

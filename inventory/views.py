@@ -9,10 +9,12 @@ from .forms import PurchaseForm
 from .forms import SaleForm
 from django.db import models
 from django.db.models import Sum
+from django.contrib.auth.forms import UserCreationForm
 
 
 
 
+@login_required
 def dashboard(request):
 
     return render(
@@ -21,7 +23,7 @@ def dashboard(request):
     )
 
 
-
+@login_required
 def category(request):
     categories = Category.objects.all()
     return render(
@@ -31,7 +33,7 @@ def category(request):
             'categories' :categories
         }
     )
-
+@login_required
 def category_add(request):
     if request.method == 'POST':
         form = CategoryForm(request.POST)
@@ -52,7 +54,7 @@ def category_add(request):
         }
     )
 
-
+@login_required
 def products(request):
     products = Product.objects.all()
 
@@ -63,7 +65,7 @@ def products(request):
             'products':products
         }
     )
-     
+@login_required    
 def product_add(request):
     if request.method == 'POST':
          form = ProductForm(request.POST)
@@ -86,7 +88,7 @@ def product_add(request):
                 'form':form
             }
         )    
-
+@login_required
 def supplier(request):
     supplier = Supplier.objects.all()
 
@@ -98,7 +100,7 @@ def supplier(request):
             'supplier':supplier
         }
     )
-
+@login_required
 def supplier_add(request):
     if request.method =='POST':
         form = SupplierForm(request.POST)
@@ -130,7 +132,7 @@ def purchase(request):
             'purchase':purchase
         }
     )
-
+@login_required
 def purchase_add(request):
     if request. method == 'POST':
         form = PurchaseForm(request.POST)
@@ -162,7 +164,7 @@ def sales(request):
         }
     )
 
-
+@login_required
 def sale_add(request):
     if request.method == 'POST':
          form = SaleForm(request.POST)
@@ -185,7 +187,7 @@ def sale_add(request):
             }
         )
 
-
+@login_required
 def stock(request):
     products = Product.objects.all()
 
@@ -203,7 +205,7 @@ def stock(request):
         'inventory/stock/stock.html',
         context
     )
-
+@login_required
 def reports(request):
     total_products = Product.objects.count()
 
@@ -244,7 +246,29 @@ def users_list(request):
         'inventory/users/users.html',
         context
     )
+@login_required   
+def register(request):
+    if request.method == 'POST':
+        form = UserCreationForm(request.POST)
 
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            return redirect('dashboard')
+    else:
+        form = UserCreationForm()
+
+    # Style the form fields here, after creating the form
+    for field in form.fields.values():
+        field.widget.attrs.update({
+            'class': 'form-control'
+        })
+       
+    return render(
+        request,
+        'inventory/register.html',
+        {'form': form}
+    )
 
 
 
