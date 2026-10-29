@@ -10,7 +10,7 @@ from .forms import SaleForm
 from django.db import models
 from django.db.models import Sum
 from django.contrib.auth.forms import UserCreationForm
-
+from django.contrib.auth import login
 
 
 
@@ -246,7 +246,7 @@ def users_list(request):
         'inventory/users/users.html',
         context
     )
-@login_required   
+ 
 def register(request):
     if request.method == 'POST':
         form = UserCreationForm(request.POST)
